@@ -1,6 +1,7 @@
 import React from "react";
 import m from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
+import {state} from "../../state/state";
 
 export const MyPosts = () => {
     return (
@@ -16,8 +17,11 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={m.posts}>
-                <Posts message={"Hi how are you?"}/>
-                <Posts message={"It s my first post"}/>
+                {state.profilePage.posts.map((el) => {
+                    return (
+                        <Posts id={el.id} message={el.message} likesCount={el.likesCount}/>
+                    )
+                })}
             </div>
         </div>
     )
