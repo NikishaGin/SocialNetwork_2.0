@@ -3,7 +3,17 @@ import m from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
 import {state} from "../../state/state";
 
-export const MyPosts = () => {
+type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+type PropsPostsType = {
+    posts: PostsType []
+}
+
+export const MyPosts = (props:PropsPostsType) => {
     return (
         <div className={m.postsBlock}>
             <h3>My Posts</h3>
@@ -17,7 +27,7 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={m.posts}>
-                {state.profilePage.posts.map((el) => {
+                {props.posts.map((el) => {
                     return (
                         <Posts id={el.id} message={el.message} likesCount={el.likesCount}/>
                     )
