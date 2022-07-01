@@ -5,7 +5,7 @@ import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route, } from "react-router-dom";
-import {state} from "./Components/state/state";
+import {addPosts, state} from "./Components/state/state";
 
 function App() {
     let dialogs = state.dialogsPage.dialogs
@@ -19,7 +19,7 @@ function App() {
                 <NavBar/>
                 <div className='app-content'>
                     <Route path={"/dialogs"} render={() => <Dialogs dialogs={dialogs} message={message}/>}/>
-                    <Route path={"/profile"} render={() => <Profile posts={posts}/>}/>
+                    <Route path={"/profile"} render={() => <Profile posts={posts} addPosts={addPosts} />}/>
                 </div>
             </div>
         </BrowserRouter>

@@ -1,4 +1,5 @@
 import React from "react";
+import {rerenderEntireTree} from "../render/render";
 
 type messageType = {
     id: number
@@ -25,7 +26,7 @@ type post = {
     posts: postsType []
 }
 
-type stateType = {
+export type stateType = {
     profilePage: post
     dialogsPage: dialogsPageType
 }
@@ -38,13 +39,13 @@ export let state: stateType = {
             {id: 2, message: "It s my first post", likesCount: 13},
         ]
     },
-    dialogsPage : {
+    dialogsPage: {
         dialogs: [
-            {id:1,name:"Nikita"},
-            {id:2,name:"Anton"},
-            {id:3,name:"Sveta"},
-            {id:4,name:"Dima"},
-            {id:5,name:"Sasha"},
+            {id: 1, name: "Nikita"},
+            {id: 2, name: "Anton"},
+            {id: 3, name: "Sveta"},
+            {id: 4, name: "Dima"},
+            {id: 5, name: "Sasha"},
         ],
         message: [
             {id: 1, message: "Hi"},
@@ -53,7 +54,18 @@ export let state: stateType = {
             {id: 4, message: "Yo"},
             {id: 5, message: "Yo"},
         ]
-    },
+    }
+}
+
+export const addPosts = (postsText: string) => {
+    const newPost: postsType = {
+        id: new Date().getTime(),
+        message: postsText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+
+    rerenderEntireTree(state)
 }
 
 

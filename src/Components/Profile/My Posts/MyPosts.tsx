@@ -7,22 +7,34 @@ type PostsType = {
     id: number
     message: string
     likesCount: number
+
 }
 
 type PropsPostsType = {
     posts: PostsType []
+    addPosts:(postsText: string)=>void
 }
 
 export const MyPosts = (props:PropsPostsType) => {
+
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    let addPost = () => {
+        if (newPostElement.current) {
+            props.addPosts(newPostElement.current.value = "")
+
+        }
+    }
+
     return (
         <div className={m.postsBlock}>
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                     <button>Remove</button>
                 </div>
             </div>
