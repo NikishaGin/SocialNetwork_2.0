@@ -1,5 +1,15 @@
 import React from "react";
-import {rerenderEntireTree} from "../render/render";
+/*import {rerenderEntireTree} from "../render/render";*/
+
+
+let rerenderEntireTree = () => {
+    console.log('Hello')
+}
+
+export const subscribe = (observer:() => void) => {
+    rerenderEntireTree = observer
+}
+
 
 type messageType = {
     id: number
@@ -68,14 +78,15 @@ export const addPosts = (postsText: string) => {
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
 
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
+
 
 
 

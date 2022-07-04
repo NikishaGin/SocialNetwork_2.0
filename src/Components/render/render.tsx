@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "../../App";
 import React from "react";
 
-export let rerenderEntireTree = (state: stateType) => {
+export let rerenderEntireTree = () => {
     ReactDOM.render(
         <App />,
         document.getElementById('root')
