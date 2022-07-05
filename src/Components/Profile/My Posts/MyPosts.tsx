@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import m from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
-import {ActionsType, store} from "../../state/state";
+import {ActionsType, addPostActionCreator, store, StoreType, UPDATENEWPOSTTEXTActionCreator} from "../../state/state";
 
 type PostsType = {
     id: number
@@ -17,14 +17,16 @@ type PropsPostsType = {
     /*updateNewPostText: (newText: string) => void*/
 }
 
+
 export const MyPosts = (props: PropsPostsType) => {
 
     let addPost = () => {
-        props.dispatch({type: "ADD-POSTS", newPost: props.newPostText})
+        props.dispatch(addPostActionCreator(props.newPostText))
     }
 
     let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: event.currentTarget.value})
+        /*props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: event.currentTarget.value})*/
+        props.dispatch(UPDATENEWPOSTTEXTActionCreator(event.currentTarget.value))
     }
 
     return (
