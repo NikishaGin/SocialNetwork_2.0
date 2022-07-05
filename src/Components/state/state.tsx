@@ -1,4 +1,6 @@
 import React from "react";
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type messageType = {
     id: number
@@ -16,7 +18,7 @@ type dialogsPageType = {
     newMessageBody: string
 }
 
-type postsType = {
+export type postsType = {
     id: number
     message: string
     likesCount: number
@@ -27,9 +29,10 @@ type post = {
     newPostText: string
 }
 
-type stateType = {
+export type stateType = {
     profilePage: post
     dialogsPage: dialogsPageType
+    sidebar: object
 }
 
 
@@ -82,8 +85,6 @@ export const SEND_MESSAGE = () => {
 }
 
 
-
-
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -109,7 +110,8 @@ export let store: StoreType = {
                 {id: 5, message: "Yo"},
             ],
             newMessageBody: ""
-        }
+        },
+        sidebar: {}
     },
     getState() {
         return this._state
