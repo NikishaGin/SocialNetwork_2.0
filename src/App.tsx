@@ -20,6 +20,7 @@ const App: React.FC<PropsType> = (props) => {
     let message = props.store._state.dialogsPage.message
     let profilePage = props.store._state.profilePage.posts
     let newPostText = props.store._state.profilePage.newPostText
+    let newMessageBody = props.store._state.dialogsPage.newMessageBody
 
     return (
         <BrowserRouter>
@@ -28,10 +29,13 @@ const App: React.FC<PropsType> = (props) => {
                 <NavBar/>
                 <div className='app-content'>
                     <Route path={"/dialogs"} render={() => <Dialogs dialogs={dialogs}
-                                                                    message={message}/>}/>
+                                                                    message={message}
+                                                                    newMessageBody={newMessageBody}
+                                                                    dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path={"/profile"} render={() => <Profile profilePage={profilePage}
                                                                     dispatch={props.store.dispatch.bind(props.store)}
                                                                     newPostText={newPostText}
+
                         /*updateNewPostText={store.updateNewPostText.bind(store)}*//>}/>
                 </div>
             </div>

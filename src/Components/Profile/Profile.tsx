@@ -1,7 +1,7 @@
 import React from "react";
 import {MyPosts} from "./My Posts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsType, store} from "../state/state";
+import {ActionsType, messageType, store} from "../state/state";
 
 type PostsType = {
     id: number
