@@ -1,7 +1,7 @@
 import React from "react";
 import {MyPosts} from "./My Posts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {store} from "../state/state";
+import {ActionsType, store} from "../state/state";
 
 type PostsType = {
     id: number
@@ -12,9 +12,9 @@ type PostsType = {
 
 type PropsPostsType = {
     profilePage: PostsType []
-    addPosts:(postsText: string)=>void
+    dispatch:(action: ActionsType)=>void
     newPostText: string
-    updateNewPostText:(newText: string)=>void
+    /*updateNewPostText:(newText: string)=>void*/
 }
 
 export const Profile = (props: PropsPostsType) => {
@@ -22,9 +22,9 @@ export const Profile = (props: PropsPostsType) => {
         <div>
             <ProfileInfo />
             <MyPosts profilePage={props.profilePage}
-                     addPosts={props.addPosts}
+                     dispatch={props.dispatch}
                      newPostText={props.newPostText}
-                     updateNewPostText={props.updateNewPostText}/>
+                     /*updateNewPostText={props.updateNewPostText}*//>
         </div>
     )
 }

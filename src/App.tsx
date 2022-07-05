@@ -5,13 +5,21 @@ import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route,} from "react-router-dom";
-import {store} from "./Components/state/state";
+import {store, StoreType} from "./Components/state/state";
 
-function App() {
-    let dialogs = store._state.dialogsPage.dialogs
-    let message = store._state.dialogsPage.message
-    let profilePage = store._state.profilePage.posts
-    let newPostText = store._state.profilePage.newPostText
+
+type PropsType = {
+    store: StoreType
+}
+
+
+const App: React.FC<PropsType> = (props) => {
+    /*const state = props.store.getState()*/
+
+    let dialogs = props.store._state.dialogsPage.dialogs
+    let message = props.store._state.dialogsPage.message
+    let profilePage = props.store._state.profilePage.posts
+    let newPostText = props.store._state.profilePage.newPostText
 
     return (
         <BrowserRouter>
@@ -22,9 +30,9 @@ function App() {
                     <Route path={"/dialogs"} render={() => <Dialogs dialogs={dialogs}
                                                                     message={message}/>}/>
                     <Route path={"/profile"} render={() => <Profile profilePage={profilePage}
-                                                                    addPosts={store.addPosts.bind(store)}
+                                                                    dispatch={props.store.dispatch.bind(props.store)}
                                                                     newPostText={newPostText}
-                                                                    updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                        /*updateNewPostText={store.updateNewPostText.bind(store)}*//>}/>
                 </div>
             </div>
         </BrowserRouter>
