@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import m from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
-import {state, updateNewPostText} from "../../state/state";
+import {store} from "../../state/state";
 
 type PostsType = {
     id: number

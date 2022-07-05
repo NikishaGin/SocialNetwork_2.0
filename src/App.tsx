@@ -5,13 +5,13 @@ import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route,} from "react-router-dom";
-import {addPosts, state, updateNewPostText} from "./Components/state/state";
+import {store} from "./Components/state/state";
 
 function App() {
-    let dialogs = state.dialogsPage.dialogs
-    let message = state.dialogsPage.message
-    let profilePage = state.profilePage.posts
-    let newPostText = state.profilePage.newPostText
+    let dialogs = store._state.dialogsPage.dialogs
+    let message = store._state.dialogsPage.message
+    let profilePage = store._state.profilePage.posts
+    let newPostText = store._state.profilePage.newPostText
 
     return (
         <BrowserRouter>
@@ -22,9 +22,9 @@ function App() {
                     <Route path={"/dialogs"} render={() => <Dialogs dialogs={dialogs}
                                                                     message={message}/>}/>
                     <Route path={"/profile"} render={() => <Profile profilePage={profilePage}
-                                                                    addPosts={addPosts}
+                                                                    addPosts={store.addPosts.bind(store)}
                                                                     newPostText={newPostText}
-                                                                    updateNewPostText={updateNewPostText}/>}/>
+                                                                    updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
                 </div>
             </div>
         </BrowserRouter>

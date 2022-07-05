@@ -1,6 +1,6 @@
 import React from "react";
 import m from './Dialogs.module.css';
-import {state} from "../state/state";
+import {store} from "../state/state";
 import {DialogItem} from "./Dialogitem/Dialogitem";
 import {Message} from "./Message/Message";
 
